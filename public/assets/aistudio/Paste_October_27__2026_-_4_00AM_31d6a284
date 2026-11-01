@@ -1,0 +1,938 @@
+# 1. SUA MISSÃO
+
+Crie um jogo completo chamado:
+
+# AMAZÔNIA
+
+## CHAMADO RIBEIRINHO ACREANO
+
+Você é responsável pela direção de arte, programação, design de sistemas, construção de mapas, interface, narrativa, áudio, testes e entrega final.
+
+**Este é um projeto novo. Comece do zero. Não reutilize a arquitetura, os mapas, os gráficos ou os scripts de um projeto anterior.**
+
+Antes de programar, estabeleça a direção visual, a estrutura técnica, o desenho dos mapas e os requisitos de jogabilidade.
+
+Não entregue somente um planejamento, uma imagem conceitual, um protótipo vazio ou uma demonstração de interface.
+
+O resultado deve ser um jogo 2D jogável, com sistemas integrados e possibilidade de expansão.
+
+Trabalhe diretamente nos arquivos do projeto, quando o ambiente permitir. Crie os arquivos, execute o jogo, teste as funcionalidades e corrija os problemas encontrados.
+
+Não declare funcionalidades implementadas sem verificar seu funcionamento.
+
+# 2. CONCEITO DO JOGO
+
+Crie um simulador de fazenda e vida ribeirinha inspirado nos clássicos de agricultura do Super Nintendo.
+
+O jogador retorna à região de Cruzeiro do Sul, no Acre, para recuperar a antiga propriedade de sua família.
+
+A propriedade está deteriorada. O protagonista possui poucas ferramentas, pouco dinheiro e uma área pequena para cultivar.
+
+Ao longo de quatro anos dentro do jogo, ele desenvolverá sua propriedade, conhecerá moradores, cultivará produtos regionais, criará animais, pescará, comercializará alimentos e participará da transformação de uma comunidade amazônica.
+
+O jogo deverá transmitir a sensação de viver no Vale do Juruá, respeitando a geografia, a cultura alimentar, o cotidiano, os rios, a vegetação e as atividades econômicas da região.
+
+A ambientação deve ser regionalmente reconhecível, sem transformar o Acre em uma floresta genérica.
+
+## Referências de experiência
+
+* Harvest Moon para Super Nintendo: agricultura, rotina, personagens e progressão.
+* The Legend of Zelda: A Link to the Past: construção de cenários e legibilidade da pixel art.
+* Stardew Valley: profundidade de sistemas, economia e conteúdo.
+
+Utilize essas referências para compreender princípios de design, não para copiar personagens, mapas, sprites, músicas ou outros elementos protegidos.
+
+A identidade visual, os personagens, os mapas e a música devem ser originais.
+
+# 3. TECNOLOGIA E ESTRUTURA
+
+Utilize Godot 4 com GDScript, salvo se o ambiente exigir outra tecnologia.
+
+Desenvolva um jogo 2D com:
+
+* TileMaps ou TileMapLayer.
+* Spritesheets.
+* Animações quadro a quadro.
+* Colisões.
+* Sistema de navegação.
+* Interface responsiva.
+* Áudio.
+* Salvamento persistente.
+* Suporte a teclado, controle e tela sensível ao toque.
+
+Organize o projeto em módulos independentes.
+
+Estrutura inicial sugerida:
+
+res://
+scenes/
+boot/
+menus/
+farm/
+town/
+river/
+interiors/
+characters/
+animals/
+ui/
+scripts/
+core/
+farming/
+inventory/
+economy/
+animals/
+fishing/
+characters/
+quests/
+time/
+navigation/
+save/
+assets/
+art/
+characters/
+animals/
+buildings/
+vegetation/
+crops/
+tilesets/
+vehicles/
+ui/
+title/
+audio/
+music/
+sfx/
+data/
+crops/
+animals/
+items/
+recipes/
+characters/
+quests/
+tests/
+docs/
+
+Utilize dados externos para configurar culturas, animais, itens, preços e receitas.
+
+Não concentre todos os sistemas em um único script.
+
+Não misture a lógica da economia com os scripts de apresentação visual.
+
+Implemente ferramentas de diagnóstico e registre erros relevantes.
+
+# 4. DIREÇÃO DE ARTE — REQUISITO INEGOCIÁVEL
+
+A referência visual principal é Harvest Moon de 1996 para Super Nintendo.
+
+Quero pixel art 2D detalhada, com acabamento semelhante aos jogos de fazenda de 16 bits.
+
+Não quero:
+
+* Gráficos genéricos de 8 bits.
+* Personagens caricaturais com cabeças gigantes.
+* Olhos exagerados.
+* Contornos pretos excessivamente grossos.
+* Cores fluorescentes.
+* Saturação exagerada.
+* Gradientes artificiais em todos os elementos.
+* Árvores formadas por círculos empilhados.
+* Casas feitas de retângulos genéricos.
+* Animais representados por formas geométricas.
+* Cenários inteiros gerados proceduralmente.
+* Imagens fotográficas pixelizadas automaticamente.
+* Emojis usados como personagens ou objetos.
+* Arte provisória apresentada como arte final.
+
+## 4.1 Arquivos gráficos
+
+Os gráficos devem ser arquivos bitmap reais, preferencialmente PNG com transparência.
+
+Cada elemento importante deve ter seu próprio sprite ou tileset.
+
+Crie:
+
+* Spritesheets de personagens.
+* Spritesheets de animais.
+* Tilesets de terreno.
+* Tilesets de estradas.
+* Tilesets de rios e margens.
+* Tilesets de vegetação.
+* Sprites de edifícios.
+* Sprites de ferramentas.
+* Sprites de plantações.
+* Sprites de produtos.
+* Retratos de personagens.
+* Ícones de inventário.
+* Elementos de interface.
+* Ilustrações da tela de título.
+
+Os sprites devem possuir dimensões consistentes e ser organizados por categoria.
+
+Uma grade de 16 × 16 pixels pode servir como unidade inicial dos tilesets, mas os sprites maiores devem ser dimensionados de acordo com a escala artística estabelecida.
+
+Não force todos os elementos a caber em um quadrado de 16 × 16 pixels.
+
+O protagonista, os edifícios, as árvores e os animais podem ocupar vários tiles.
+
+## 4.2 Processo de produção artística
+
+Antes de desenhar o mapa inteiro, estabeleça uma pequena amostra de arte contendo:
+
+1. Um personagem.
+2. Uma árvore amazônica.
+3. Um trecho de estrada.
+4. Um trecho de rio.
+5. Uma casa de madeira.
+6. Uma plantação.
+7. Um animal.
+8. Um conjunto de elementos da interface.
+
+Use essa amostra para estabelecer a escala, a paleta, o contraste e a densidade de detalhes.
+
+A amostra deve ser aprovada visualmente antes de expandir a produção artística.
+
+Crie arte original. Se for necessário usar geração assistida de imagens, converta os resultados em assets apropriados por um processo artístico controlado e revise cada sprite.
+
+Não utilize geração procedural para substituir o desenho dos gráficos finais.
+
+É permitido usar código para carregar, organizar, animar e posicionar imagens existentes.
+
+É permitido usar código para montar mapas com tilesets previamente desenhados.
+
+Não é permitido utilizar algoritmos para inventar aleatoriamente os sprites, a arquitetura, os personagens ou a disposição dos mapas principais.
+
+# 5. PALETA VISUAL
+
+A paleta deve refletir a Amazônia e o Vale do Juruá sem transformar o jogo inteiro em tons de verde.
+
+Utilize uma distribuição equilibrada de:
+
+* Verde-floresta.
+* Verde-oliva.
+* Verde-claro para vegetação iluminada.
+* Azul profundo e azul-acinzentado para os rios.
+* Azul suave para o céu.
+* Marrom para madeira e terra.
+* Terracota para barro e telhados.
+* Bege e creme para paredes e interiores.
+* Amarelo-palha para fibras e materiais naturais.
+* Cores específicas para frutas, flores, roupas e objetos.
+
+Não aplique um filtro verde global.
+
+O rio precisa ser visualmente distinguível da vegetação.
+
+As estradas precisam contrastar com o terreno.
+
+Os edifícios devem ter cores próprias.
+
+Os personagens devem ser reconhecíveis contra os cenários.
+
+As áreas agrícolas precisam ser legíveis sem depender exclusivamente da cor.
+
+A iluminação deve ser controlada por uma paleta artística consistente, e não por efeitos aleatórios.
+
+# 6. IDENTIDADE GEOGRÁFICA — CRUZEIRO DO SUL, ACRE
+
+O jogo deve utilizar referências reais de Cruzeiro do Sul para orientar o desenho do centro urbano.
+
+Pesquise, quando houver acesso à internet, fotografias, imagens aéreas e mapas públicos da região.
+
+Utilize especialmente a área central e o percurso urbano entre a região da ponte sobre o Juruá, a área do Miritizal, a Lagoa ou o Trapiche, conforme a identificação e a localização confirmadas nas fontes, e a região da rodoviária.
+
+Antes de desenhar os mapas, confirme os locais, as conexões viárias e a geografia utilizando fontes cartográficas e fotográficas confiáveis.
+
+Não invente uma disposição geográfica e a apresente como reprodução real.
+
+Se algum ponto estiver ambíguo, registre a incerteza e verifique sua localização.
+
+## 6.1 Interpretação para o jogo
+
+O mapa jogável será uma representação artística simplificada da cidade, não uma reprodução cartográfica em escala real.
+
+Preserve os elementos geográficos importantes:
+
+* Rio e margens.
+* Pontes.
+* Vias principais.
+* Conexões entre bairros.
+* Área comercial.
+* Espaços públicos.
+* Terminal rodoviário.
+* Áreas próximas à água.
+* Construções e referências visuais relevantes.
+
+A organização espacial deve permitir que o jogador reconheça a lógica da cidade.
+
+Crie edifícios, fachadas e ruas com características regionais.
+
+Não utilize uma cidade europeia genérica com árvores tropicais adicionadas posteriormente.
+
+# 7. MAPAS FIXOS E PLANEJADOS
+
+Todos os mapas principais devem ser planejados manualmente.
+
+Não use geração procedural para definir a posição de:
+
+* Estradas.
+* Pontes.
+* Casas.
+* Lojas.
+* Praças.
+* Portos.
+* Plantações.
+* Pontos de ônibus.
+* Rotas de veículos.
+* Entradas de edifícios.
+* Pontos de interesse narrativo.
+
+Cada mapa deve possuir um documento de layout antes da implementação.
+
+Defina coordenadas, dimensões, conexões, limites, colisões e entradas.
+
+Os mapas devem ser criados com tilesets desenhados e organizados.
+
+Não use uma distribuição aleatória de árvores e casas para preencher espaços vazios.
+
+## 7.1 Mapas obrigatórios
+
+### Mapa A — Fazenda da Família
+
+Inclua:
+
+* Casa principal.
+* Quintal.
+* Área de plantio.
+* Espaço para árvores frutíferas.
+* Abrigo de animais.
+* Depósito.
+* Poço ou fonte de água, quando apropriado.
+* Caminho de acesso.
+* Área de expansão.
+* Conexão com a estrada.
+
+### Mapa B — Estrada Rural
+
+Conecte a fazenda à vila.
+
+A estrada deve possuir curvas desenhadas corretamente, entradas de propriedades, transições de terreno e pontos de referência.
+
+### Mapa C — Vila Ribeirinha
+
+Inclua casas, comércio pequeno, praça, caminhos, áreas de convivência e acesso ao rio.
+
+### Mapa D — Centro Comercial de Cruzeiro do Sul
+
+Crie uma representação simplificada baseada nas referências reais pesquisadas.
+
+Inclua estabelecimentos, ruas, fachadas, circulação de pedestres e pontos de interesse.
+
+### Mapa E — Porto
+
+Inclua embarcadouro, canoas, margem acessível, área de carga e caminhos de madeira.
+
+### Mapa F — Floresta e Igarapé
+
+Inclua trilhas desenhadas manualmente, pontos de coleta, cursos d'água, clareiras e áreas exploráveis.
+
+### Mapa G — Feira e Mercado
+
+Inclua barracas, vendedores, produtos, áreas de circulação e locais para missões comerciais.
+
+### Mapa H — Rodoviária
+
+Crie uma área de transporte rodoviário integrada à malha viária.
+
+O terminal deve possuir acessos coerentes, área de embarque, edifício, calçadas e circulação.
+
+# 8. ESTRADAS, ÔNIBUS E NAVEGAÇÃO
+
+Este sistema deve ser planejado desde o início.
+
+Não coloque veículos apenas como sprites animados sobre o mapa.
+
+Cada veículo deve obedecer às regras de circulação de seu ambiente.
+
+## Ônibus
+
+O ônibus deve:
+
+* Permanecer sobre as estradas.
+* Seguir rotas definidas.
+* Utilizar pontos de passagem ordenados.
+* Respeitar as curvas.
+* Parar em locais apropriados.
+* Possuir direção visual coerente com o deslocamento.
+* Não atravessar casas, árvores, rios ou terrenos bloqueados.
+* Não cortar caminho em linha reta através do mato.
+* Não sair da pista durante a interpolação entre pontos.
+
+Antes de iniciar uma rota, valide sua conectividade.
+
+Se não existir um caminho válido, o ônibus não deve iniciar o deslocamento.
+
+## Personagens
+
+Os personagens devem respeitar colisões e caminhos transitáveis.
+
+Não podem atravessar edifícios, árvores sólidas, cercas ou obstáculos.
+
+## Embarcações
+
+Canoas e barcos devem circular somente em trechos navegáveis.
+
+Os pontos de embarque e desembarque precisam estar conectados às margens acessíveis.
+
+O sistema de navegação fluvial deve ser separado da navegação rodoviária.
+
+Crie testes para verificar as rotas.
+
+# 9. INTERFACE PRIORITARIAMENTE VERTICAL
+
+O jogo será desenvolvido com foco em celulares e precisa de uma interface vertical bem planejada.
+
+A proporção de referência é 9:16.
+
+A interface deve ser desenhada para essa proporção desde o início.
+
+Não desenvolva primeiro uma interface horizontal e depois a comprima.
+
+Não cubra a maior parte da tela com botões.
+
+Não utilize painéis gigantes.
+
+Não coloque ícones aleatoriamente nas bordas.
+
+Não esconda o protagonista atrás da interface.
+
+Não use textos minúsculos.
+
+## 9.1 Organização visual
+
+Na tela vertical, a hierarquia deve ser:
+
+1. Mundo do jogo.
+2. Indicadores compactos.
+3. Horário, dia e dinheiro.
+4. Ferramenta selecionada.
+5. Inventário rápido.
+6. Controles de movimento.
+7. Botões de interação.
+8. Menus secundários acessados quando necessários.
+
+A área principal de jogo deve permanecer ampla e legível.
+
+Os controles devem ficar posicionados de maneira ergonômica.
+
+O direcional virtual deve ficar na parte inferior esquerda.
+
+Os botões de ação devem ficar na parte inferior direita.
+
+A barra de ferramentas deve ser compacta e permitir selecionar ferramentas com poucos toques.
+
+Os indicadores de dinheiro, horário e clima devem ser pequenos, mas legíveis.
+
+O inventário completo deve abrir em uma tela separada, com organização por categorias.
+
+O mapa, o diário e as configurações devem utilizar telas próprias.
+
+Não exiba todas as informações simultaneamente.
+
+## 9.2 Responsividade
+
+O jogo também deve funcionar em telas horizontais, mas o layout vertical é a prioridade.
+
+Não distorça sprites para preencher diferentes proporções.
+
+Use uma câmera adaptativa.
+
+A interface deve respeitar áreas seguras de dispositivos móveis.
+
+Implemente suporte a toque, teclado e controle físico.
+
+Antes de finalizar, inspecione capturas reais do jogo em resolução vertical.
+
+# 10. MOVIMENTAÇÃO E INTERAÇÃO
+
+Implemente movimentação em quatro direções.
+
+O personagem deve possuir animações para:
+
+* Caminhar para cima.
+* Caminhar para baixo.
+* Caminhar para a esquerda.
+* Caminhar para a direita.
+* Permanecer parado em cada direção.
+* Utilizar ferramentas.
+* Plantar.
+* Regar.
+* Colher.
+* Pescar.
+* Interagir.
+* Carregar objetos, quando necessário.
+
+As animações devem utilizar spritesheets desenhados especificamente para o protagonista.
+
+Não utilize o mesmo quadro estático para todas as ações.
+
+A velocidade de movimento deve ser consistente.
+
+As ações precisam ter alcance e direção.
+
+O personagem não deve conseguir plantar ou colher a distância.
+
+A interação deve verificar se o alvo está próximo e se a ação é válida.
+
+# 11. CICLO DIÁRIO
+
+Implemente um sistema completo de tempo.
+
+O jogo deve possuir:
+
+* Relógio.
+* Dias.
+* Meses.
+* Anos.
+* Calendário.
+* Clima.
+* Rotinas dos moradores.
+* Horários comerciais.
+* Energia.
+* Sono.
+* Passagem do tempo durante as atividades.
+
+A jornada deve começar pela manhã.
+
+O jogador pode trabalhar, visitar a cidade, pescar, explorar e conversar.
+
+O sono encerra o dia e permite que culturas, animais e processos produtivos avancem.
+
+O jogador deve perceber as consequências de suas decisões.
+
+A passagem do tempo deve afetar o mundo, mas não pode ser tão rápida a ponto de tornar as tarefas frustrantes.
+
+# 12. AGRICULTURA REGIONAL
+
+A agricultura é o principal sistema econômico do jogo.
+
+Implemente as seguintes culturas:
+
+* Mandioca.
+* Milho.
+* Feijão.
+* Arroz.
+* Macaxeira, quando houver diferenças de uso relevantes.
+* Banana.
+* Abacaxi.
+* Açaí.
+* Cupuaçu.
+* Cacau.
+* Mamão.
+* Maracujá.
+* Cana-de-açúcar.
+* Pimenta-de-cheiro.
+* Cheiro-verde.
+* Hortaliças adequadas ao ambiente regional.
+
+Cada cultura deve possuir:
+
+* Sprite de sementes.
+* Sprite plantado.
+* Fases de crescimento.
+* Tempo de maturação.
+* Necessidade de água.
+* Condições de cultivo.
+* Valor de venda.
+* Rendimento.
+* Possibilidade de processamento.
+* Usos culinários.
+* Informações no livro agrícola.
+
+As árvores frutíferas devem possuir crescimento e produção próprios.
+
+A mandioca deve possuir ciclo de cultivo e colheita compatíveis com a cultura.
+
+O açaí e o cupuaçu devem possuir importância econômica e narrativa.
+
+As plantas não podem crescer instantaneamente.
+
+O jogador precisa preparar o solo, plantar, cuidar e colher.
+
+A chuva deve contribuir para a irrigação.
+
+As culturas devem respeitar o calendário de cultivo definido para o jogo.
+
+# 13. SEIS CATEGORIAS DE ANIMAIS
+
+Implemente seis categorias:
+
+1. Galinhas.
+2. Patos.
+3. Porcos.
+4. Cabras.
+5. Vacas ou bois de criação.
+6. Peixes em viveiros.
+
+Cada categoria deve possuir sprites e comportamentos próprios.
+
+Implemente alimentação, crescimento, saúde, produção, aquisição, venda e necessidades de espaço.
+
+As galinhas produzem ovos.
+
+Os patos possuem animações e necessidades apropriadas.
+
+Os porcos podem crescer e ser vendidos.
+
+As cabras podem produzir leite.
+
+As vacas podem produzir leite e ter filhotes.
+
+Os peixes de viveiro crescem ao longo do tempo.
+
+Os animais devem reagir ao ambiente e à interação do jogador.
+
+Implemente abrigos, cercas, comedouros e melhorias.
+
+Não permita reprodução ilimitada.
+
+A pesca nos rios deve ser diferente da criação em viveiros.
+
+# 14. PESCA E FLORESTA
+
+A pesca deve considerar:
+
+* Localização.
+* Espécies.
+* Iscas.
+* Horário.
+* Clima.
+* Dificuldade.
+* Raridade.
+* Tamanho.
+* Valor comercial.
+
+Inclua espécies amazônicas apropriadas, como tambaqui, pirarucu, jaraqui e surubim, respeitando as diferenças entre ambientes.
+
+A floresta deve possuir recursos coletáveis, árvores frutíferas, trilhas e pontos de exploração.
+
+Implemente limites de coleta e regeneração.
+
+A exploração deve respeitar a conservação ambiental.
+
+O jogador poderá descobrir novas áreas e rotas ao longo dos quatro anos.
+
+# 15. PROCESSAMENTO E COMIDA
+
+Implemente uma cadeia produtiva.
+
+Exemplos:
+
+Mandioca → casa de farinha → farinha de mandioca.
+
+Açaí → processamento → polpa.
+
+Cupuaçu → processamento → polpa.
+
+Frutas → processamento → produtos alimentícios.
+
+Peixes → preparo → pratos regionais.
+
+Leite → processamento → produtos derivados.
+
+Cada receita deve possuir insumos, tempo, rendimento e valor.
+
+O jogador pode consumir alimentos para recuperar energia ou vendê-los.
+
+A produção artesanal deve aumentar o valor dos produtos e criar novas oportunidades comerciais.
+
+# 16. ECONOMIA E CENTRO COMERCIAL
+
+Crie um centro comercial inspirado na realidade de Cruzeiro do Sul.
+
+Inclua:
+
+* Mercado.
+* Feira.
+* Loja de sementes.
+* Loja de ferramentas.
+* Peixaria.
+* Carpintaria.
+* Oficina de barcos.
+* Comércio de animais.
+* Pontos de compra e venda de produtos agrícolas.
+* Rodoviária.
+* Porto.
+
+Cada estabelecimento deve possuir horários e funções próprias.
+
+Implemente:
+
+* Compra.
+* Venda.
+* Dinheiro.
+* Inventário.
+* Estoque.
+* Preços.
+* Contratos.
+* Encomendas.
+* Histórico de transações.
+* Desbloqueios.
+* Melhorias comerciais.
+
+A economia deve recompensar o planejamento.
+
+Vender farinha processada pode ser mais vantajoso do que vender apenas a mandioca, mas exige tempo, estrutura e trabalho.
+
+Evite mecanismos que permitam gerar dinheiro infinito por meio de uma única ação repetitiva.
+
+# 17. NARRATIVA E MISSÕES
+
+Crie pelo menos 18 personagens originais.
+
+Cada personagem importante deve possuir:
+
+* Nome.
+* Aparência.
+* Ocupação.
+* Personalidade.
+* Rotina.
+* Diálogos.
+* Preferências.
+* Missões pessoais.
+* Relacionamento com o protagonista.
+
+A história deve abordar família, trabalho, cooperação, comércio, amizade e preservação ambiental.
+
+As missões devem possuir objetivos verificáveis, condições de conclusão e recompensas.
+
+Exemplos:
+
+* Recuperar o roçado.
+* Entregar farinha ao mercado.
+* Ajudar um pescador a reparar sua canoa.
+* Organizar uma banca na feira.
+* Recuperar a antiga casa de farinha.
+* Ajudar a comunidade durante um período de chuvas intensas.
+* Preparar produtos para uma celebração regional.
+* Recuperar uma rota de transporte.
+
+Não crie missões que terminem sem consequência.
+
+# 18. CAMPANHA DE QUATRO ANOS
+
+A campanha principal deve durar quatro anos dentro do jogo.
+
+## Ano 1 — Raízes
+
+O jogador recupera a propriedade, aprende a plantar, pesca, conhece os comerciantes e realiza as primeiras vendas.
+
+## Ano 2 — Colheita
+
+O jogador expande o cultivo, cria animais, processa alimentos e começa a participar de contratos comerciais.
+
+## Ano 3 — Comunidade
+
+O jogador amplia sua produção, fortalece relações, ajuda produtores locais e participa do desenvolvimento comunitário.
+
+## Ano 4 — Legado
+
+O jogador conclui a história familiar, consolida a propriedade, participa de uma grande celebração e decide como deseja contribuir para o futuro da comunidade.
+
+As mudanças devem ser visíveis no mundo.
+
+As lojas podem melhorar, novas áreas podem ser abertas e os personagens devem reagir às conquistas.
+
+O encerramento deve considerar as escolhas do jogador.
+
+Após o final, permita continuar jogando.
+
+# 19. EVENTOS E FESTIVAIS
+
+Implemente eventos anuais, como:
+
+* Feira da Colheita.
+* Festival da Pesca Sustentável.
+* Feira de Produtos Regionais.
+* Celebração Comunitária.
+* Concurso de Produção Agrícola.
+* Evento Gastronômico.
+
+Cada evento deve ter cenário, personagens, objetivos, recompensas e diálogos próprios.
+
+# 20. TELA DE TÍTULO
+
+Crie uma tela de título desenhada especificamente para o jogo.
+
+A composição deve apresentar o rio Juruá, uma canoa, a vegetação das margens, uma casa de madeira e uma comunidade ao fundo.
+
+Utilize sprites e fundos autorais.
+
+O título deve ser legível e integrado à composição.
+
+Inclua:
+
+* Novo jogo.
+* Continuar.
+* Carregar.
+* Opções.
+* Créditos.
+
+A abertura deve possuir animação discreta e música original.
+
+Não utilize um fundo genérico, uma imagem aleatória ou uma tela com apenas um gradiente e texto.
+
+# 21. ÁUDIO
+
+Crie música original inspirada na estética dos consoles clássicos e na atmosfera amazônica.
+
+Inclua temas para:
+
+* Fazenda.
+* Vila.
+* Centro comercial.
+* Floresta.
+* Rio.
+* Festivais.
+* Noite.
+* Encerramento.
+
+Implemente efeitos sonoros para ferramentas, chuva, água, animais, pesca, passos, portas e comércio.
+
+Não copie músicas de jogos existentes.
+
+# 22. SALVAMENTO
+
+Implemente pelo menos três espaços de salvamento.
+
+Salve:
+
+* Data.
+* Dinheiro.
+* Inventário.
+* Ferramentas.
+* Plantações.
+* Animais.
+* Construções.
+* Missões.
+* Relacionamentos.
+* Desbloqueios.
+* Progresso da história.
+* Estado dos mapas.
+
+O jogo deve permitir salvar e carregar sem perder o progresso.
+
+Implemente validação dos dados e tratamento de arquivos inválidos.
+
+# 23. QUALIDADE E TESTES
+
+Teste o jogo dentro da engine.
+
+Não considere uma funcionalidade pronta apenas porque existe um script com seu nome.
+
+Verifique o comportamento real.
+
+Teste:
+
+* Movimento.
+* Colisões.
+* Plantio.
+* Crescimento.
+* Colheita.
+* Inventário.
+* Comércio.
+* Animais.
+* Pesca.
+* Missões.
+* Rotinas dos personagens.
+* Passagem dos anos.
+* Salvamento.
+* Interface vertical.
+* Rotas de ônibus.
+* Navegação de canoas.
+* Entradas dos edifícios.
+
+O ônibus deve circular apenas por estradas válidas.
+
+Os personagens não devem atravessar paredes.
+
+As canoas devem circular apenas em trechos navegáveis.
+
+O jogador não deve plantar em áreas inadequadas.
+
+A interface não deve esconder elementos importantes.
+
+# 24. ORDEM DE DESENVOLVIMENTO
+
+Desenvolva o projeto na seguinte sequência:
+
+FASE 1: arquitetura técnica e direção de arte.
+
+FASE 2: criação da amostra visual e dos primeiros assets.
+
+FASE 3: desenho do mapa inicial da fazenda.
+
+FASE 4: movimento, colisões e câmera.
+
+FASE 5: plantio, crescimento, colheita e inventário.
+
+FASE 6: tempo, calendário e salvamento.
+
+FASE 7: vila, comércio e personagens.
+
+FASE 8: animais, pesca e processamento.
+
+FASE 9: centro comercial e mapas regionais.
+
+FASE 10: missões, relacionamentos e campanha de quatro anos.
+
+FASE 11: interface mobile, música, efeitos sonoros e abertura.
+
+FASE 12: testes, correções e entrega.
+
+Mantenha o jogo executável ao final de cada fase.
+
+Não implemente todos os sistemas de uma só vez em um único arquivo.
+
+Não deixe a produção artística para o fim.
+
+A direção de arte deve ser validada desde a primeira versão jogável.
+
+# 25. ENTREGÁVEIS
+
+Entregue:
+
+1. Projeto completo da engine.
+2. Código organizado.
+3. Sprites e tilesets utilizados.
+4. Mapas desenhados.
+5. Tela de título funcional.
+6. Interface mobile.
+7. Sistemas de agricultura.
+8. Sistemas de animais.
+9. Pesca e exploração.
+10. Comércio.
+11. Personagens e missões.
+12. Campanha de quatro anos.
+13. Salvamento persistente.
+14. Música e efeitos sonoros.
+15. Documentação técnica.
+16. Instruções para executar o jogo.
+17. Relatório dos testes realizados.
+18. Lista explícita das funcionalidades ainda incompletas.
+
+Não apresente funcionalidades planejadas como se já estivessem prontas.
+
+# PRINCÍPIO FINAL
+
+AMAZÔNIA: CHAMADO RIBEIRINHO ACREANO deve ser uma experiência de fazenda com identidade amazônica própria.
+
+A qualidade da pixel art, o planejamento dos mapas, a autenticidade regional, a interface mobile e a consistência da jogabilidade são requisitos centrais.
+
+Não substitua trabalho artístico por geração procedural.
+
+Não substitua mapas planejados por layouts aleatórios.
+
+Não substitua sistemas funcionais por telas decorativas.
+
+Comece pela arquitetura e pela direção de arte, construa uma primeira versão jogável e expanda o projeto com testes contínuos.
+
+O objetivo é entregar um jogo que possa ser jogado, explorado, desenvolvido ao longo de quatro anos e reconhecido visualmente como uma obra inspirada na região de Cruzeiro do Sul, Acre.

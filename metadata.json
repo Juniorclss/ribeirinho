@@ -1,0 +1,6 @@
+{
+  "name": "Amazônia: Chamado Ribeirinho Acreano",
+  "description": "Simulador 2D 16-bits de fazenda e vida ribeirinha em Cruzeiro do Sul, Acre, no Vale do Juruá.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
